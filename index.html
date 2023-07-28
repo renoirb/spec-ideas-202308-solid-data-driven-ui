@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Use of metadata to describe and drive UI transitions</title>
+    <script
+      src="https://www.w3.org/Tools/respec/respec-w3c"
+      class="remove"
+      defer
+    ></script>
+    <script class="remove">
+      // All config options at https://respec.org/docs/
+      var respecConfig = {
+        // https://github.com/w3c/respec/wiki/specStatus
+        specStatus: 'unofficial',
+        editors: [
+          {
+            name: 'Renoir Boulanger',
+            url: 'https://renoirb.com',
+          },
+        ],
+        github: {
+          repoURL:
+            'https://github.com/renoirb/spec-ideas-202308-solid-data-driven-ui',
+          branch: 'main',
+        },
+        shortName: 'data-driven-ui',
+        xref: 'web-platform',
+        group: 'solid',
+      }
+    </script>
+  </head>
+  <body>
+    <section id="abstract">
+      <un-markdown>
+<!-- prettier-ignore -->
+
+How to describe views in a way where we can separate out the functionality from the presentation and aeasthetics.
+Data structure to describe and organize visualization, and help manage data transitions, so the presentation layer can focus on itself.
+
+The following is an attempt to give better explanation from an
+[earlier *blog post* dating from 2020][2020_BLOG_POST]
+and put into context for
+[Solid Community Group comment][SOLIDCG_COMMENT].
+
+[SOLIDCG_COMMENT]: https://github.com/solid/process/pull/323#discussion_r1270051384 "Solid CG #323 Process revision Pull-Request"
+[2020_BLOG_POST]: https://renoirb.github.io/site/blog/2020/02/data-driven-ui/ "Renoir’s 2020 blog post: Data Driven UI"
+      </un-markdown>
+    </section>
+    <section id="sotd">
+      <un-markdown>
+<!-- prettier-ignore -->
+
+This is just the beginning, just a placeholder to start reorganize what's
+[been said in **solid/process#323** comment][SOLIDCG_COMMENT].
+
+[SOLIDCG_COMMENT]: https://github.com/solid/process/pull/323#discussion_r1270051384 "Solid CG #323 Process revision Pull-Request"
+      </un-markdown>
+    </section>
+    <section class="informative">
+      <h2>Introduction</h2>
+      <p>Some informative introductory text.</p>
+      <aside class="note" title="A useful note">
+        <p>I'm a note!</p>
+      </aside>
+    </section>
+    <section>
+      <h2>A section</h2>
+      <aside class="example">
+        <p>This is an example.</p>
+        <pre class="js">
+        // Automatic syntax highlighting
+        function someJavaScript(){}
+        </pre>
+      </aside>
+      <section>
+        <h3>I'm a sub-section</h3>
+        <p class="issue" data-number="121">
+          <!-- Issue can automatically be populated from GitHub -->
+        </p>
+      </section>
+    </section>
+    <section data-dfn-for="Foo">
+      <h2>Start your spec!</h2>
+      <pre class="idl">
+        [Exposed=Window]
+        interface Foo {
+        attribute DOMString bar;
+        undefined doTheFoo();
+        };
+      </pre>
+      <p>The <dfn>Foo</dfn> interface represents a {{Foo}}.</p>
+      <p>
+        The <dfn>doTheFoo()</dfn> method does the foo. Call it by running
+        {{Foo/doTheFoo()}}.
+      </p>
+      <ol class="algorithm">
+        <li>A |variable:DOMString| can be declared like this.</li>
+      </ol>
+    </section>
+    <section id="conformance">
+      <p>
+        This is required for specifications that contain normative material.
+      </p>
+    </section>
+    <script class="remove" type="module" async>
+      import Showdown from 'https://ga.jspm.io/npm:showdown@2.1.0/dist/showdown.js'
+      import { registerCustomElement } from 'https://renoirb.com/esm-modules/element-utils.mjs'
+      import MarkdownContent, {
+        ContextRequest_MarkdownContent,
+      } from 'https://renoirb.com/esm-modules/markdown-content.mjs'
+      registerCustomElement(window, 'un-markdown', MarkdownContent)
+      const converter = new Showdown.Converter({ metadata: false })
+      converter.setOption('openLinksInNewWindow', true)
+      window.document.addEventListener('context-request', (event) => {
+        if (event.context === ContextRequest_MarkdownContent) {
+          event.stopPropagation()
+          const markdown = event.target.innerHTML
+          const html = converter.makeHtml(markdown)
+          event.callback({ markdown, html })
+        }
+      })
+    </script>
+  </body>
+</html>
